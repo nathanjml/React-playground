@@ -54,7 +54,7 @@ export default function weather({ weatherData }) {
         />
       </div>
       <div className="flex">
-        <p className="day">{dayjs().format("dddd")}</p>
+        <p className="day">{dayjs(weatherData.dt * 1000).format("dddd")}</p>
         <div className="flex">
           <WeatherIcon style={{ fontSize: 30, marginTop: 15 }}>
             {weatherIcon}
@@ -64,7 +64,9 @@ export default function weather({ weatherData }) {
       </div>
 
       <div className="flex">
-        <p className="temp">{weatherData.main.temp} &deg;C</p>
+        <p className="temp">
+          {((weatherData.main.temp * 9) / 5 + 32).toFixed(1)} &deg;F
+        </p>
         <p className="temp">Humidity: {weatherData.main.humidity} %</p>
       </div>
 
